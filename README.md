@@ -8,22 +8,26 @@ Played with a standard 52-card deck, 2–10 players. Ace is the highest card (ra
 ## Round 1
 
 1. Each player is dealt 3 cards (configurable). The rest of the deck is the draw pile.
-2. Each player secretly selects one card; cards are revealed simultaneously.
-3. The highest card wins the whole pile. Won cards are put **aside** into the winner's
+2. Players take turns in seating order, each playing one card face up, so everyone
+   sees what was played before them. The first trick is led by the first player; after
+   that, the winner of the previous trick leads.
+3. When everyone has played once, the highest card wins the whole pile. Won cards are put **aside** into the winner's
    won-pile — they do not affect hand size. (These become the player's round 2 hand.)
-4. If the highest cards tie, the tied players each play another card into the same pile.
+4. If the highest cards tie, the tied players each play another card into the same pile,
+   in the order they played.
    Repeat until there is a unique highest card. The winner takes the whole pile,
    including all tie-breakers.
 5. After the trick, in seating order, each player with fewer than 3 cards in hand draws
    one card from the pile, until the pile is empty or all hands are full.
-6. The **last card in the deck** determines the trump suit. The last player to draw it
-   shows it to everyone and takes it into their hand. It must be played during round 1
-   (it cannot remain in the player's hand when round 1 ends).
+6. The **last card in the deck** is the trump card. It is never played in round 1: the
+   player who would draw it puts it aside, face down, straight into their round 2 hand
+   (their round 1 hand stays one card short). Nobody sees it — not even its holder —
+   until round 1 ends, when it is revealed and its suit becomes the trump suit.
 7. Round 1 ends when the draw pile is empty and all hands are empty.
 
 ## Round 2
 
-1. Round 2 is started by the player who drew the trump card.
+1. Round 2 is started by the player who got the trump card.
 2. On an empty table the leader may play any single card, or a **straight** — two or
    more consecutive cards starting from 2, in any suit mix. A straight counts as a
    single play.
@@ -45,3 +49,11 @@ Played with a standard 52-card deck, 2–10 players. Ace is the highest card (ra
    wait until there are cards on the table and then pick up the bottom-most card.
 9. The game continues until only one player remains — the last player holding cards
    loses.
+
+## Running
+
+```sh
+npm install
+npm start        # http://localhost:3000 (set PORT to change)
+npm test
+```

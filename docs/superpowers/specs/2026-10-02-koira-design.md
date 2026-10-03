@@ -25,7 +25,7 @@ koira/
 ```
 
 - **Server-authoritative**: clients send intents only (`createGame`, `joinGame`,
-  `startGame`, `playCard`, `playStraight`, `pickup`, `selectRound1`), referencing card
+  `startGame`, `playCard`, `playStraight`, `pickup`, `playRound1`), referencing card
   IDs from their own hand. The server validates everything.
 - **Realtime**: Socket.IO rooms, one room per game. On every state change the server
   emits a per-player personalized state: own hand visible, others show card counts.
@@ -54,13 +54,15 @@ table state, phase, whose turn, trump.
 ### Round 1
 
 1. Shuffle, deal `handSize` to each player.
-2. Trick: each player secretly selects a card (simultaneous). Reveal all. Highest
-   rank wins; whole pile (incl. tie-breakers) → winner's won-pile.
-3. Ties: tied players select again into the same pile; repeat.
+2. Trick: players play one card each, face up, in seating order starting from the
+   leader (first player, then the previous trick's winner). Highest rank wins; whole
+   pile (incl. tie-breakers) → winner's won-pile.
+3. Ties: tied players play again into the same pile, in the order they played; repeat.
 4. Replenish hands to `handSize` from draw pile, in seating order, until empty/full.
-5. Last card of pile = trump card: suit is trump, revealed to all, goes into the
-   last drawer's hand. Engine-enforced: must be played before round 1 ends (if it's
-   their last card it must be their final play).
+5. Last card of pile = trump card: set aside face down straight into the would-be
+   drawer's won-pile (round 2 hand), never into their round 1 hand. Views hide it — card,
+   suit and holder — from everyone, incl. the holder, until round 2 starts; won counts
+   include it so the holder isn't revealed. Revealed to all when round 1 ends.
 6. Round 1 ends when draw pile and all hands are empty.
 
 ### Round 2

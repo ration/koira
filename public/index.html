@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Koira</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🐕 Koira</h1>
+    <span id="whoami"></span>
+  </header>
+
+  <main>
+    <section id="view-nick" class="view hidden">
+      <h2>Who are you?</h2>
+      <form id="nick-form" class="row">
+        <input id="nick-input" maxlength="20" placeholder="Nickname" required autofocus />
+        <button>Enter</button>
+      </form>
+    </section>
+
+    <section id="view-lobby" class="view hidden">
+      <div class="panel">
+        <h2>Open games</h2>
+        <ul id="game-list"></ul>
+      </div>
+      <div class="panel">
+        <h2>Create game</h2>
+        <form id="create-form" class="col">
+          <input name="name" maxlength="40" placeholder="Game name" />
+          <input name="password" type="password" placeholder="Password (optional)" />
+          <label>Hand size <input name="handSize" type="number" min="1" max="10" value="3" /></label>
+          <button>Create</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="view-room" class="view hidden">
+      <div class="panel">
+        <h2 id="room-name"></h2>
+        <p id="room-info"></p>
+        <ul id="room-players"></ul>
+        <div class="row">
+          <button id="start-btn">Start game</button>
+          <button id="leave-btn" class="secondary">Leave</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-game" class="view hidden">
+      <div id="opponents"></div>
+      <div id="status"></div>
+      <div id="table-area">
+        <div id="table" data-zone="table"></div>
+        <div id="side">
+          <div id="draw-pile"></div>
+          <div id="trump"></div>
+        </div>
+      </div>
+      <div id="actions"></div>
+      <div id="my-won" class="hidden"></div>
+      <div id="hand" data-zone="hand"></div>
+      <details id="log-box"><summary>Game log</summary><ol id="log"></ol></details>
+      <button id="leave-game-btn" class="secondary small">Leave game</button>
+    </section>
+  </main>
+
+  <div id="toast" class="hidden"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
